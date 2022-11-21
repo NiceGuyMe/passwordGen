@@ -39,4 +39,9 @@ public class PasswordController {
     public void deletePassword(@PathVariable(name = "id_password")int idPassword){
          passwordService.deletePassword(idPassword);
     }
+
+    @GetMapping("/password/generate")
+    public String generate(@RequestParam int len){
+        return passwordService.Generate(len);
+    }
 }

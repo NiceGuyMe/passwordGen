@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 @AllArgsConstructor
@@ -30,8 +31,22 @@ public class PasswordService {
         return passwordRepository.findById(password);
     }
 
-    public String deletePassword(int id){
+    public void deletePassword(int id){
         passwordRepository.deleteById(id);
-        return "password is delete successfully";
     }
+
+    public String Generate(int len){
+        String up ="AZERTYUIOPQSDFGHJKLMWXCVBN";
+        String low="azertyuiopqsdfghjklmwxcvbn";
+        String num="0123456789";
+        String special ="&#$%";
+        String combination = up+low+special+num;
+        char [] password=new char[len];
+        Random r= new Random();
+        for (int i = 0; i <len ; i++) {
+            password[i]=combination.charAt(r.nextInt(combination.length()));
+        }
+        return new String(password);
+    }
+
 }
