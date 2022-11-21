@@ -13,11 +13,9 @@ import java.io.Serializable;
 @ToString
 @RequiredArgsConstructor
 @Entity
-@Table(name = "password")
 public class Password implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "serial")
     private int idPassword;
 
     @Column(name = "name", nullable = false)
