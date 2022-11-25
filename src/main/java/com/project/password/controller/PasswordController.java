@@ -25,7 +25,7 @@ public class PasswordController {
     }
 
     @GetMapping("/password/{id_password}")
-    public Optional<Password> getPasswordByID(@PathVariable("passwordId") int passwordId) {
+    public Optional<Password> getPasswordByID(@PathVariable("id_password") int passwordId) {
         return passwordService.getById(passwordId);
     }
 
@@ -43,5 +43,14 @@ public class PasswordController {
     @GetMapping("/password/generate")
     public String generate(@RequestParam int len){
         return passwordService.Generate(len);
+    }
+
+    @GetMapping("/password/count")
+    public int getPasswordCount(){
+        return passwordService.getPasswordCount();
+    }
+    @GetMapping("/")
+    public String Pong (){
+        return "server on";
     }
 }

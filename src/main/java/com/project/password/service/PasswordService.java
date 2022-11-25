@@ -5,6 +5,7 @@ import com.project.password.repository.PasswordRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 
@@ -23,6 +24,11 @@ public class PasswordService {
         return passwordRepository.findAll(pageable).toList();
     }
 
+//    public List<Password> getAllPasswordByName(int page, int pageSize){
+//        Pageable pageable = PageRequest.of(page-1, pageSize);
+//        return passwordRepository.findAll(Sort.sort())
+//    }
+
     public Password insertPassword(Password newPassword){
         return passwordRepository.save(newPassword);
     }
@@ -35,11 +41,16 @@ public class PasswordService {
         passwordRepository.deleteById(id);
     }
 
+    public int getPasswordCount(){
+        return passwordRepository.findAll().size();
+    }
+
+
     public String Generate(int len){
         String up ="AZERTYUIOPQSDFGHJKLMWXCVBN";
         String low="azertyuiopqsdfghjklmwxcvbn";
         String num="0123456789";
-        String special ="&#$%";
+        String special ="<>&#$%@!?+-=";
         String combination = up+low+special+num;
         char [] password=new char[len];
         Random r= new Random();
